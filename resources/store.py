@@ -5,7 +5,8 @@ from models.storemodel import StoreModel
 class Store(Resource):
 
     def get(self, name):
-        if store := StoreModel.find_by_name(name):
+        store=StoreModel.find_by_name(name)
+        if store:
             return store.json()
         return {"message": 'Store not found'}
 
@@ -23,7 +24,8 @@ class Store(Resource):
 
 
     def delete(self, name):
-        if store := StoreModel.find_by_name(name):
+        store = StoreModel.find_by_name(name)
+        if store:
             store.delete_from_db()
 
         return {'message': f'Item {name} deleted'}

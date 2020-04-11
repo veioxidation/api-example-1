@@ -27,7 +27,8 @@ class Item(Resource):
 
     @jwt_required()
     def get(self, name):
-        if item := ItemModel.find_by_name(name):
+        item = ItemModel.find_by_name(name)
+        if item:
             return item.json()
         else:
             return {"message": "Item not found"}, 404
@@ -56,7 +57,8 @@ class Item(Resource):
         # cursor.execute(delete_query, (name,))
         # connection.commit()
         # connection.close()
-        if item := ItemModel.find_by_name(name):
+        item = ItemModel.find_by_name(name)
+        if item:
             item.delete_from_db()
 
         return {'message': f'Item {name} deleted'}
@@ -84,4 +86,3 @@ class ItemList(Resource):
     def get():
         return {"items": [item.json() for item in ItemModel.query.all()]}
         # return {"items": list(map(lambda x: x.json(), ItemModel.query.all()))}
-
