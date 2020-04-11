@@ -9,10 +9,10 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.store import Store, StoreList
 
-
-
-
+# creating an application
 app = Flask(__name__)
+
+# configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
