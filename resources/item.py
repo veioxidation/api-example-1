@@ -1,9 +1,8 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT, jwt_required
-from security_s5 import authenticate, identity
+from security import authenticate, identity
 
-from user import UserRegister
 from models.itemmodel import ItemModel
 
 app = Flask(__name__)
@@ -86,10 +85,3 @@ class ItemList(Resource):
         return {"items": [item.json() for item in ItemModel.query.all()]}
         # return {"items": list(map(lambda x: x.json(), ItemModel.query.all()))}
 
-
-if __name__ == '__main__':
-    api.add_resource(Item, '/item/<string:name>')  # http://127.0.0.1:5000/student/Rolf
-    api.add_resource(ItemList, '/items')  # http://127.0.0.1:5000/student/Rolf
-    api.add_resource(UserRegister, '/register')  # http://127.0.0.1:5000/register
-
-    app.run(port=5000)

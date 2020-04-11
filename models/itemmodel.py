@@ -1,4 +1,3 @@
-import sqlite3
 from db import db
 
 
@@ -18,7 +17,7 @@ class ItemModel(db.Model):
         self.store_id = store_id
 
     def json(self):
-        return {'name': self.name, 'price': self.price, 'store_id':self.store_id}
+        return {'name': self.name, 'price': self.price, 'store_id': self.store_id}
 
     @classmethod
     def find_by_name(cls, name):
@@ -34,8 +33,6 @@ class ItemModel(db.Model):
 
         return cls.query.filter_by(name=name).first()  # SELECT * FROM items WHERE name=name LIMIT 1
 
-
-
     def save_to_db(self):
         # connection = sqlite3.connect("data.db")
         # cursor = connection.cursor()
@@ -46,8 +43,7 @@ class ItemModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
-    def delete_from_db( self):
+    def delete_from_db(self):
         # connection = sqlite3.connect("data.db")
         # cursor = connection.cursor()
         # insert_query = "UPDATE items SET price=? WHERE name=?"
