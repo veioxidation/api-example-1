@@ -18,12 +18,6 @@ app.secret_key = 'przemek'
 # Resource management
 api = Api(app)
 
-
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
-
 jwt = JWT(app, authenticate, identity)  # Pass authentication and identity function
 
 # this resource is available only for get methods
